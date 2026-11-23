@@ -1,0 +1,19 @@
+# Large / generated artifacts — reproducible from the scripts in bin/ and installer/
+work/
+logs/
+dist/*.img
+dist/*.img.xz
+dist/SHA256SUMS
+*.tar.xz
+*.tar.xz.sha256
+*.iso
+*.iso.sha256
+*.img
+*.gpkg.tar
+*.deb
+iso/
+.stage3_url
+
+# Python
+__pycache__/
+*.pyc

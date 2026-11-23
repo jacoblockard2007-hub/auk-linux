@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Install Gentoo KDE
+GenericName=Install to internal disk
+Comment=Copy this live system onto an internal disk
+Exec=/usr/local/bin/gentoo-installer
+Icon=gentoo-installer
+Terminal=false
+Categories=System;Settings;
+Keywords=install;setup;disk;
+StartupNotify=true

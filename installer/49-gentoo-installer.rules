@@ -1,0 +1,9 @@
+// Allow the live desktop user to launch only the installer backend through
+// pkexec without an extra authentication prompt. The program path check keeps
+// this from becoming a general passwordless root shell.
+polkit.addRule(function(action, subject) {
+    if (action.id == "org.freedesktop.policykit.exec" &&
+        action.lookup("program") == "/usr/local/sbin/gentoo-install-to-disk") {
+        return polkit.Result.YES;
+    }
+});
