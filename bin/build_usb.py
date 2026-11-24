@@ -36,7 +36,8 @@ SCRIPTS = ("live-stage1.sh", "chroot-stage2.sh", "build-usb-image.sh",
            "gui-installer.py", "gentoo-installer.desktop",
            "gentoo-files.desktop", "gentoo-installer.svg",
            "49-gentoo-installer.rules", "install-fastfetch.sh",
-           "install-branding.sh",
+           "install-branding.sh", "install-grub-theme.sh",
+           "grub-theme/theme.txt", "grub-theme/auk-logo.png",
            "fastfetch/fastfetch", "fastfetch/auk", "fastfetch/auk.txt",
            "fastfetch/config.jsonc", "fastfetch/LICENSE")
 

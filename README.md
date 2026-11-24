@@ -102,6 +102,8 @@ installer/gentoo-installer.svg  installer icon shipped in the image
 installer/49-gentoo-installer.rules  polkit rule for the backend path
 installer/install-fastfetch.sh  vendor fastfetch + the Auk logo into an image root
 installer/install-branding.sh  apply os-release, hostname and GRUB identity
+installer/install-grub-theme.sh  install the Auk GRUB logo and menu layout
+installer/grub-theme/           Auk GRUB theme artwork
 installer/install-wifi-firmware.py  fetch Debian Wi-Fi firmware into an image root
 installer/fastfetch/            vendored fastfetch 2.71.0, auk.txt, config, MIT license
 work/                   kernel, initramfs, disk image, screenshots
@@ -112,6 +114,7 @@ docs/KVM.md             KVM options and headless verification
 docs/INSTALLER.md       installer flow, backend behavior, testing, limits
 docs/PERFORMANCE.md     measured idle CPU/RAM on the 2 GB Chromebook
 docs/fastfetch.png      the Auk Snares penguin logo in Konsole
+docs/grub.png           the Auk GRUB boot menu
 ```
 
 ## Reproducing
@@ -227,7 +230,8 @@ twice — `i386-pc` for BIOS and `x86_64-efi` at the removable fallback path
 | Root mount | by UUID; fstab has UUIDs for root and ESP |
 | Size | 14.0 GiB raw, 9.6 GiB allocated, fits a 16 GB stick |
 
-Screenshots: [BIOS](docs/usb-bios.png), [UEFI](docs/usb-uefi.png).
+Screenshots: [BIOS](docs/usb-bios.png), [UEFI](docs/usb-uefi.png),
+[boot menu](docs/grub.png).
 
 ### Installer: USB to internal disk
 

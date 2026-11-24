@@ -93,6 +93,9 @@ sh /tmp/inst/install-fastfetch.sh /mnt/new
 # GRUB distributor. Runs before finalize-usb.sh regenerates the GRUB menu.
 sh /tmp/inst/install-branding.sh /mnt/new --hostname auk
 
+# Swap the packaged Gentoo theme artwork for the Auk logo and layout.
+sh /tmp/inst/install-grub-theme.sh /mnt/new
+
 if command -v gtk-update-icon-cache >/dev/null 2>&1; then
     gtk-update-icon-cache -q -t -f /mnt/new/usr/share/icons/hicolor || true
 fi
