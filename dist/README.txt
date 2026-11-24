@@ -1,8 +1,9 @@
 Auk - bootable USB image (prototype)
 ====================================
 
-Auk is a beginner-friendly, zero-compilation Gentoo desktop. This image is a
-persistent installed system, not a read-only live CD.
+Auk is a beginner-friendly, zero-compilation Linux desktop built from Gentoo
+binary packages. This image is a persistent installed system, not a read-only
+live CD.
 
 Files:
   auk-linux-usb.img      14 GiB raw image

@@ -1,9 +1,9 @@
 # Auk
 
-**A beginner-friendly, zero-compilation Gentoo desktop.** Auk boots from a USB
-stick into KDE Plasma, ships a graphical one-click installer, and installs every
-package from Gentoo's official binary host — nothing is compiled on the user's
-machine.
+**A beginner-friendly, zero-compilation Linux desktop built from Gentoo binary
+packages.** Auk boots from a USB stick into KDE Plasma, ships a graphical
+one-click installer, and installs every package from Gentoo's official binary
+host — nothing is compiled on the user's machine.
 
 ```sh
 git clone https://github.com/jacoblockard2007-hub/auk-linux.git

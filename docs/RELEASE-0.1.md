@@ -35,7 +35,7 @@ sudo bin/write-usb.sh /dev/sdX dist/auk-linux-usb.img
 - OS: **Auk Linux** 0.1, based on Gentoo Linux
 - Hostname on the live image: `auk` (`demo@auk` in fastfetch)
 - Installer: **Install Auk Linux**
-- GRUB menu: **Auk Linux**
+- GRUB menu: **Auk Linux** with the Auk wordmark boot theme
 - Fastfetch logo: the Auk Snares penguin, available with the `auk` command
 
 ## Credentials
