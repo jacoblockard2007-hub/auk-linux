@@ -29,7 +29,7 @@ OVMF_VARS = "/usr/share/OVMF/OVMF_VARS_4M.fd"
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--uefi", action="store_true")
-    ap.add_argument("--image", default=os.path.join(ROOT, "dist", "gentoo-kde-usb.img"))
+    ap.add_argument("--image", default=os.path.join(ROOT, "dist", "auk-linux-usb.img"))
     ap.add_argument("--tag", default=None)
     args = ap.parse_args()
 
@@ -64,12 +64,12 @@ def main():
     ok = True
     try:
         print(f"[*] booting {args.image} ({tag})")
-        vm.wait(r"gentoo-proto login:", timeout=420)
+        vm.wait(r" login:", timeout=420)
         print("[*] login prompt reached")
         vm.sendline("root")
         vm.wait(r"Password:", timeout=30)
         vm.sendline("gentoo")
-        vm.wait(r"root@gentoo-proto ~ #", timeout=90)
+        vm.wait(r"root@\S+ ~ #", timeout=90)
 
         vm.run("systemctl is-system-running --wait || true", timeout=300)
         vm.sendline(

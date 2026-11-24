@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Graphical "Install to internal disk" wizard for the Gentoo KDE prototype.
+"""Graphical "Install to internal disk" wizard for the Auk Linux prototype.
 
 Runs as the live desktop user. The destructive work is delegated to
 /usr/local/sbin/gentoo-install-to-disk through pkexec. The backend clones the
@@ -23,7 +23,7 @@ from gi.repository import GLib, Gtk  # noqa: E402
 
 BACKEND = os.environ.get("GENTOO_INSTALL_BACKEND",
                          "/usr/local/sbin/gentoo-install-to-disk")
-APP_ID = "org.gentoo.KdeInstaller"
+APP_ID = "org.auk.Installer"
 
 PAGES = ["welcome", "disk", "user", "summary", "progress"]
 
@@ -86,11 +86,11 @@ class Installer(Gtk.Application):
     def do_activate(self):
         self.disks = list_disks()
         self.window = Gtk.ApplicationWindow(application=self,
-                                            title="Install Gentoo KDE")
+                                            title="Install Auk Linux")
         self.window.set_default_size(960, 680)
 
         header = Gtk.HeaderBar()
-        header.set_title_widget(Gtk.Label(label="Install Gentoo KDE"))
+        header.set_title_widget(Gtk.Label(label="Install Auk Linux"))
         self.window.set_titlebar(header)
 
         outer = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
@@ -145,18 +145,22 @@ class Installer(Gtk.Application):
         box.set_margin_start(64)
         box.set_margin_end(64)
 
-        icon = Gtk.Image.new_from_icon_name("gentoo-installer")
+        icon_path = "/usr/share/icons/hicolor/scalable/apps/gentoo-installer.svg"
+        if os.path.exists(icon_path):
+            icon = Gtk.Image.new_from_file(icon_path)
+        else:
+            icon = Gtk.Image.new_from_icon_name("gentoo-installer")
         icon.set_pixel_size(96)
         box.append(icon)
 
-        title = Gtk.Label(label="Install Gentoo KDE on this computer")
+        title = Gtk.Label(label="Install Auk Linux on this computer")
         title.add_css_class("title-1")
         box.append(title)
 
         body = Gtk.Label(xalign=0)
         body.set_wrap(True)
         body.set_markup(
-            "This wizard copies the complete KDE Plasma system from this USB "
+            "This wizard copies the complete Auk Linux system from this USB "
             "stick onto an internal disk.\n\n"
             "• No downloading and no compiling — the install is offline.\n"
             "• The selected disk will be <b>completely erased</b>.\n"
@@ -240,7 +244,7 @@ class Installer(Gtk.Application):
             grid.attach(widget, 1, r, 1, 1)
 
         self.host_entry = Gtk.Entry()
-        self.host_entry.set_text("gentoo-pc")
+        self.host_entry.set_text("auk-pc")
         self.host_entry.set_hexpand(True)
         row(0, "Computer name", self.host_entry)
 

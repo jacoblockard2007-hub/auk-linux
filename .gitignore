@@ -3,6 +3,8 @@ work/
 logs/
 dist/*.img
 dist/*.img.xz
+dist/*.img.xz.part*
+dist/*.part
 dist/SHA256SUMS
 *.tar.xz
 *.tar.xz.sha256

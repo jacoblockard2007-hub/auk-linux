@@ -10,7 +10,7 @@
 set -euo pipefail
 
 ROOT=$(cd "$(dirname "$0")/.." && pwd)
-IMAGE=${IMAGE:-$ROOT/dist/gentoo-kde-usb.img}
+IMAGE=${IMAGE:-$ROOT/dist/auk-linux-usb.img}
 MEM=${MEM:-8192}
 CPUS=${CPUS:-6}
 UEFI=0
@@ -37,7 +37,7 @@ command -v qemu-system-x86_64 >/dev/null || die "qemu-system-x86_64 not installe
 
 ARGS=(
     -accel kvm -cpu host -smp "$CPUS" -m "$MEM"
-    -name "Gentoo KDE"
+    -name "Auk Linux"
     -drive "file=$IMAGE,format=raw,if=virtio,cache=writeback"
     -nic user,model=virtio-net-pci
     -boot c

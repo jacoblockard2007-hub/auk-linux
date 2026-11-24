@@ -32,11 +32,11 @@ def main():
     )
     vm = VM(argv, os.path.join(LOGS, "probe-console.log"))
     try:
-        vm.wait(r"gentoo-proto login:", timeout=300)
+        vm.wait(r" login:", timeout=300)
         vm.sendline("root")
         vm.wait(r"Password:", timeout=30)
         vm.sendline("gentoo")
-        vm.wait(r"root@gentoo-proto ~ #", timeout=60)
+        vm.wait(r"root@\S+ ~ #", timeout=60)
         vm.sendline("systemctl is-system-running --wait || true; echo __READY__")
         vm.wait("__READY__", timeout=240)
         for group in COMMANDS:

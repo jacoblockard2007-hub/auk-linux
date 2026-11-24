@@ -1,5 +1,5 @@
 #!/bin/bash
-# Install the running Gentoo KDE system onto another disk.
+# Install the running Auk Linux system onto another disk.
 #
 # Runs as root on the live USB system. Clones the running root filesystem,
 # regenerates machine identity/users/fstab, and installs GRUB for BIOS+UEFI.
@@ -73,7 +73,7 @@ if [ "$CONFIG_STDIN" = 1 ]; then
     IFS=$'\t' read -r DISK INSTALL_USER INSTALL_PASS INSTALL_HOST INSTALL_FULL || true
 fi
 
-echo "===== GENTOO INSTALL $(date -u) ====="
+echo "===== AUK LINUX INSTALL $(date -u) ====="
 
 [ "$(id -u)" = 0 ] || die "must run as root"
 [ -n "$DISK" ] && [ -b "$DISK" ] || die "target disk missing or not a block device"
@@ -154,15 +154,15 @@ sgdisk --zap-all "$DISK"
 sgdisk --clear \
     --new=1:2048:+1M --typecode=1:ef02 --change-name=1:"BIOS boot" \
     --new=2:0:+512M  --typecode=2:ef00 --change-name=2:"EFI System" \
-    --new=3:0:0      --typecode=3:8300 --change-name=3:"Gentoo root" \
+    --new=3:0:0      --typecode=3:8300 --change-name=3:"Auk root" \
     "$DISK"
 partprobe "$DISK" || true
 udevadm settle || true
 sleep 1
 
 echo "==> formatting"
-mkfs.vfat -F32 -n GENTOOEFI "$ESP_PART"
-mkfs.ext4 -F -m 1 -L gentoo-root "$ROOT_PART"
+mkfs.vfat -F32 -n AUKEFI "$ESP_PART"
+mkfs.ext4 -F -m 1 -L auk-root "$ROOT_PART"
 
 echo "==> mounting target"
 mkdir -p /mnt/target
@@ -197,6 +197,11 @@ FINALIZE=${GENTOO_FINALIZE:-/usr/local/lib/gentoo-installer/finalize-install.sh}
 [ -f "$FINALIZE" ] || die "finalizer not found: $FINALIZE"
 cp "$FINALIZE" /mnt/target/root/finalize-install.sh
 chmod 0755 /mnt/target/root/finalize-install.sh
+BRANDING=/usr/local/lib/gentoo-installer/install-branding.sh
+if [ -f "$BRANDING" ]; then
+    cp "$BRANDING" /mnt/target/root/install-branding.sh
+    chmod 0755 /mnt/target/root/install-branding.sh
+fi
 mount --rbind /proc /mnt/target/proc
 mount --rbind /sys  /mnt/target/sys
 mount --rbind /dev  /mnt/target/dev

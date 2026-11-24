@@ -68,7 +68,7 @@ def main():
     ok = True
     try:
         print("[*] booting installed system from disk")
-        vm.wait(r"gentoo-proto login:", timeout=300)
+        vm.wait(r" login:", timeout=300)
         print("[*] getty up, logging in")
         vm.sendline("root")
         vm.wait(r"Password:", timeout=30)
@@ -76,7 +76,7 @@ def main():
         # login(1) flushes pending tty input when it execs the shell, so a
         # command sent immediately after the password is silently discarded.
         # Wait for the prompt before sending anything.
-        vm.wait(r"root@gentoo-proto ~ #", timeout=60)
+        vm.wait(r"root@\S+ ~ #", timeout=60)
         print("[*] root shell up")
 
         rc = vm.run("systemctl is-system-running --wait || true", timeout=240)

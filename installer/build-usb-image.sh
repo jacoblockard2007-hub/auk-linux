@@ -36,7 +36,7 @@ sgdisk --zap-all "$NEW_DISK"
 sgdisk --clear \
     --new=1:2048:+1M --typecode=1:ef02 --change-name=1:"BIOS boot" \
     --new=2:0:+512M  --typecode=2:ef00 --change-name=2:"EFI System" \
-    --new=3:0:0      --typecode=3:8300 --change-name=3:"root" \
+    --new=3:0:0      --typecode=3:8300 --change-name=3:"Auk root" \
     "$NEW_DISK"
 sgdisk --verify "$NEW_DISK"
 partprobe "$NEW_DISK" || true
@@ -44,9 +44,9 @@ udevadm settle || true
 sleep 1
 
 echo "--- filesystems ---"
-mkfs.vfat -F32 -n GENTOOEFI "$NEW_ESP"
+mkfs.vfat -F32 -n AUKEFI "$NEW_ESP"
 # -m 1 keeps the ext4 reserved-block overhead low, appropriate for a USB stick.
-mkfs.ext4 -F -m 1 -L gentoo-root "$NEW_ROOT"
+mkfs.ext4 -F -m 1 -L auk-root "$NEW_ROOT"
 
 echo "--- mount source and target ---"
 mkdir -p /mnt/old /mnt/new
@@ -83,9 +83,15 @@ install -D -m 0644 /tmp/inst/49-gentoo-installer.rules \
     /mnt/new/etc/polkit-1/rules.d/49-gentoo-installer.rules
 install -D -m 0644 /tmp/inst/gentoo-installer.svg \
     /mnt/new/usr/share/icons/hicolor/scalable/apps/gentoo-installer.svg
+install -D -m 0755 /tmp/inst/install-branding.sh \
+    /mnt/new/usr/local/lib/gentoo-installer/install-branding.sh
 
 # Vendored fastfetch + Snares penguin logo and the system-wide config.
 sh /tmp/inst/install-fastfetch.sh /mnt/new
+
+# Brand the copied system as Auk Linux: os-release, console banner, hostname,
+# GRUB distributor. Runs before finalize-usb.sh regenerates the GRUB menu.
+sh /tmp/inst/install-branding.sh /mnt/new --hostname auk
 
 if command -v gtk-update-icon-cache >/dev/null 2>&1; then
     gtk-update-icon-cache -q -t -f /mnt/new/usr/share/icons/hicolor || true
@@ -114,11 +120,12 @@ mount --rbind /proc /mnt/new/proc
 mount --rbind /sys  /mnt/new/sys
 mount --rbind /dev  /mnt/new/dev
 install -m 0755 /tmp/inst/finalize-usb.sh /mnt/new/root/finalize-usb.sh
+install -m 0755 /tmp/inst/install-branding.sh /mnt/new/root/install-branding.sh
 chroot /mnt/new /usr/bin/env -i HOME=/root TERM=linux \
     PATH=/usr/sbin:/usr/bin:/sbin:/bin \
     TARGET_DISK="$NEW_DISK" ROOT_UUID="$ROOT_UUID" ESP_UUID="$ESP_UUID" \
     /bin/bash /root/finalize-usb.sh
-rm -f /mnt/new/root/finalize-usb.sh
+rm -f /mnt/new/root/finalize-usb.sh /mnt/new/root/install-branding.sh
 
 echo "--- flush and unmount ---"
 sync

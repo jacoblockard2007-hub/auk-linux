@@ -69,6 +69,7 @@ rm -f /usr/local/sbin/gentoo-install-to-disk \
       /etc/polkit-1/rules.d/49-gentoo-installer.rules \
       /usr/share/icons/hicolor/scalable/apps/gentoo-installer.svg \
       /root/finalize-install.sh \
+      /root/install-branding.sh \
       /var/log/gentoo-install.log
 rm -rf /usr/local/lib/gentoo-installer
 rm -rf /home/*/Desktop/gentoo-installer.desktop /etc/xdg/autostart/gentoo-installer.desktop
@@ -95,12 +96,16 @@ grub-install --target=x86_64-efi --efi-directory=/boot/efi \
 if [ -d /sys/firmware/efi/efivars ] && command -v efibootmgr >/dev/null 2>&1; then
     echo "UEFI variables present; adding a boot entry"
     grub-install --target=x86_64-efi --efi-directory=/boot/efi \
-        --bootloader-id=Gentoo --no-nvram --recheck || true
-    efibootmgr -c -d "$TARGET_DISK" -p 2 -L "Gentoo" \
-        -l '\EFI\Gentoo\grubx64.efi' || true
+        --bootloader-id=Auk --no-nvram --recheck || true
+    efibootmgr -c -d "$TARGET_DISK" -p 2 -L "Auk Linux" \
+        -l '\EFI\Auk\grubx64.efi' || true
 fi
 
 grub-mkconfig -o /boot/grub/grub.cfg
+# Normalize "Auk Linux GNU/Linux" (grub-mkconfig's suffix) to "Auk Linux".
+if [ -f /root/install-branding.sh ]; then
+    sh /root/install-branding.sh / --grub-cfg /boot/grub/grub.cfg
+fi
 cat > /boot/efi/EFI/BOOT/grub.cfg <<EOF
 search --no-floppy --fs-uuid --set=root $ROOT_UUID
 configfile (\$root)/boot/grub/grub.cfg

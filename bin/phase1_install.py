@@ -33,7 +33,7 @@ def build_installer_tar():
     path = os.path.join(WORK, "installer.tar")
     with tarfile.open(path, "w") as tar:
         for name in ("live-stage1.sh", "chroot-stage2.sh",
-                     "install-wifi-firmware.py"):
+                     "install-branding.sh", "install-wifi-firmware.py"):
             tar.add(os.path.join(ROOT, "installer", name), arcname=name)
     return path
 

@@ -10,31 +10,44 @@ git clone https://github.com/jacoblockard2007-hub/auk-linux.git
 cd auk-linux
 ```
 
+> **Why is the clone only ~13 MB?** Git holds the source, scripts and docs. The
+> 14 GiB bootable image is published as split release assets; fetch it with
+> `bin/download-image.sh`.
+
 > **Status:** working prototype. The build pipeline, USB image, installer and
-> desktop have all been tested end to end on BIOS and UEFI; branding and the
-> installer experience are still being polished.
+> desktop have all been tested end to end on BIOS and UEFI; installer polish and
+> hardware coverage are still in progress.
 
 ![Auk on the live desktop](docs/fastfetch.png)
 
-## Boot it now
+## Get the image
 
-The build produces a 14 GiB **persistent** disk image that boots on both BIOS
-and UEFI machines. It fits a 16 GB USB stick. Images are not stored in git;
-build one with the pipeline below, or grab a release when one is published.
+The release image is a 14 GiB **persistent** disk that boots on both BIOS and
+UEFI machines and fits a 16 GB USB stick. It is compressed and split into parts
+smaller than GitHub's 2 GiB per-asset limit, so it is not stored in git:
+
+```sh
+bin/download-image.sh
+```
+
+The script downloads the parts, verifies every SHA-256, joins them and
+decompresses `dist/auk-linux-usb.img` (~14 GiB). To build it yourself instead,
+see the pipeline below.
+
+## Boot it now
 
 ```sh
 bin/boot-kvm.sh                                   # boot it in a local KVM window
 bin/boot-kvm.sh --uefi                            # same image, UEFI firmware
 (cd dist && sha256sum -c SHA256SUMS)              # verify the image files
-sudo bin/write-usb.sh /dev/sdX dist/gentoo-kde-usb.img   # write a USB stick
+sudo bin/write-usb.sh /dev/sdX dist/auk-linux-usb.img   # write a USB stick
 ```
 
 See [docs/KVM.md](docs/KVM.md) and [docs/USB.md](docs/USB.md). The USB stick is
 a real installed system: changes persist, and it boots on its own. It also
-carries a **GTK 4 “Install Gentoo KDE” wizard** that copies that system onto an
+carries a **GTK 4 “Install Auk Linux” wizard** that copies that system onto an
 internal disk, so a beginner never sees a command line. See
-[docs/INSTALLER.md](docs/INSTALLER.md). (The wizard still carries its original
-name; renaming it to Auk is on the list below.)
+[docs/INSTALLER.md](docs/INSTALLER.md).
 
 ## Why this is possible now
 
@@ -88,6 +101,7 @@ installer/gui-installer.py    GTK 4 install wizard
 installer/gentoo-installer.svg  installer icon shipped in the image
 installer/49-gentoo-installer.rules  polkit rule for the backend path
 installer/install-fastfetch.sh  vendor fastfetch + the Auk logo into an image root
+installer/install-branding.sh  apply os-release, hostname and GRUB identity
 installer/install-wifi-firmware.py  fetch Debian Wi-Fi firmware into an image root
 installer/fastfetch/            vendored fastfetch 2.71.0, auk.txt, config, MIT license
 work/                   kernel, initramfs, disk image, screenshots
@@ -199,7 +213,7 @@ Method and comparison plan: [docs/PERFORMANCE.md](docs/PERFORMANCE.md).
 ### Bootable artifact: USB and KVM
 
 The working disk was then turned into a distributable image,
-`dist/gentoo-kde-usb.img`: 14 GiB raw (9.6 GiB allocated), GPT with a 1 MiB
+`dist/auk-linux-usb.img`: 14 GiB raw (9.6 GiB allocated), GPT with a 1 MiB
 BIOS boot partition, a 512 MiB ESP, and a 13.5 GiB ext4 root. `dist/SHA256SUMS`
 covers the raw image. GRUB is installed
 twice — `i386-pc` for BIOS and `x86_64-efi` at the removable fallback path
@@ -312,8 +326,8 @@ aborts instead of falling back to compiling.
 3. **Flatpak + Discover** as the beginner-facing app store, with Portage hidden.
 4. **Rollback.** btrfs + snapper, so a bad update is one click to undo.
 5. **Upstream attribution and trademark.** The project is named Auk and
-   credits Gentoo as its base; the installer UI still says "Install Gentoo
-   KDE" and should be renamed, and the trademark position should be reviewed.
+   credits Gentoo as its base; the desktop, installer, GRUB and fastfetch
+   identity all read Auk Linux, and the trademark position should be reviewed.
 6. **Update UX.** A tray notifier that runs `emerge --getbinpkg -uDN @world`
    and never drops a beginner into a Portage blocker.
 

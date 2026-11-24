@@ -18,7 +18,7 @@ bin/boot-kvm.sh --snapshot      # discard all changes when the VM exits
 | `--vnc` | no local window; VNC on `127.0.0.1:5905` |
 
 Environment variables: `MEM` (MiB, default 8192), `CPUS` (default 6), and
-`IMAGE` (default `dist/gentoo-kde-usb.img`).
+`IMAGE` (default `dist/auk-linux-usb.img`).
 
 The VM uses virtio disk, virtio network (user-mode NAT), virtio-vga and a USB
 tablet for an absolute pointer. Plasma runs on Wayland; graphics are software

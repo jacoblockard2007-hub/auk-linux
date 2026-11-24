@@ -46,7 +46,7 @@ def login_root(vm, tries=4):
     for _ in range(tries):
         mark = vm.mark()
         try:
-            vm.wait(r"gentoo-proto login:", timeout=180, since=mark)
+            vm.wait(r" login:", timeout=180, since=mark)
         except TimeoutError:
             continue
         time.sleep(1)
@@ -58,14 +58,14 @@ def login_root(vm, tries=4):
             continue
         vm.sendline("gentoo")
         mark = vm.mark()
-        vm.wait(r"root@gentoo-proto ~ #", timeout=60, since=mark)
+        vm.wait(r"root@\S+ ~ #", timeout=60, since=mark)
         return
     raise RuntimeError("could not log in on ttyS0")
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--usb", default=os.path.join(ROOT, "dist", "gentoo-kde-usb.img"))
+    ap.add_argument("--usb", default=os.path.join(ROOT, "dist", "auk-linux-usb.img"))
     ap.add_argument("--target", default=os.path.join(WORK, "gui-target.img"))
     ap.add_argument("--keep-target", action="store_true")
     args = ap.parse_args()

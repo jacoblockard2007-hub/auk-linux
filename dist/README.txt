@@ -5,8 +5,13 @@ Auk is a beginner-friendly, zero-compilation Gentoo desktop. This image is a
 persistent installed system, not a read-only live CD.
 
 Files:
-  gentoo-kde-usb.img      14 GiB raw image
-  SHA256SUMS              checksum
+  auk-linux-usb.img      14 GiB raw image
+  SHA256SUMS              checksums for the image and split parts
+
+The release stores the image as compressed, split .xz parts. From a git clone,
+fetch and verify them with:
+
+  bin/download-image.sh
 
 Verify before writing:
 
@@ -14,7 +19,7 @@ Verify before writing:
 
 Write to a USB stick of at least 16 GB (all data is erased):
 
-  sudo dd if=gentoo-kde-usb.img of=/dev/sdX bs=4M conv=fsync status=progress
+  sudo dd if=auk-linux-usb.img of=/dev/sdX bs=4M conv=fsync status=progress
   sync
 
 Or use any image writer (balenaEtcher, GNOME Disks, Rufus in DD mode).
@@ -48,7 +53,7 @@ Network:
     device appears, check `rfkill list` and `dmesg | grep -i firmware`.
 
 Install onto the computer's internal disk:
-  - On the live desktop, double-click "Install Gentoo KDE".
+  - On the live desktop, double-click "Install Auk Linux".
   - Choose the target disk, computer name, and user account.
   - The install is offline: it copies this system; nothing is compiled.
   - The selected disk is completely erased. 16 GB minimum.

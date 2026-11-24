@@ -174,8 +174,7 @@ echo "--- base system configuration ---"
 cat > /etc/fstab <<'EOF'
 /dev/vda1  /  ext4  defaults,noatime  0 1
 EOF
-echo gentoo-proto > /etc/hostname
-grep -q gentoo-proto /etc/hosts || echo '127.0.1.1 gentoo-proto' >> /etc/hosts
+sh /root/install-branding.sh / --hostname auk
 
 echo 'root:gentoo' | chpasswd
 id demo >/dev/null 2>&1 || useradd -m -G wheel,audio,video,usb,plugdev,portage -s /bin/bash demo
@@ -190,6 +189,7 @@ fi
 echo "--- bootloader ---"
 grub-install --target=i386-pc "$TARGET_DISK"
 grub-mkconfig -o /boot/grub/grub.cfg
+sh /root/install-branding.sh / --grub-cfg /boot/grub/grub.cfg
 
 echo "--- enable services ---"
 systemctl enable serial-getty@ttyS0.service || true

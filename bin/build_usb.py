@@ -4,7 +4,7 @@
 Usage:
     bin/build_usb.py [--force] [--size 14G]
 
-Creates dist/gentoo-kde-usb.img by booting the live environment, partitioning a
+Creates dist/auk-linux-usb.img by booting the live environment, partitioning a
 fresh GPT disk (BIOS boot + ESP + root), copying the installed root read-only,
 and installing GRUB for both firmware types.
 """
@@ -22,7 +22,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WORK = os.path.join(ROOT, "work")
 LOGS = os.path.join(ROOT, "logs")
 DIST = os.path.join(ROOT, "dist")
-IMAGE = os.path.join(DIST, "gentoo-kde-usb.img")
+IMAGE = os.path.join(DIST, "auk-linux-usb.img")
 
 FLAGS = [a for a in sys.argv[1:] if a.startswith("--")]
 FORCE = "--force" in FLAGS
@@ -36,6 +36,7 @@ SCRIPTS = ("live-stage1.sh", "chroot-stage2.sh", "build-usb-image.sh",
            "gui-installer.py", "gentoo-installer.desktop",
            "gentoo-files.desktop", "gentoo-installer.svg",
            "49-gentoo-installer.rules", "install-fastfetch.sh",
+           "install-branding.sh",
            "fastfetch/fastfetch", "fastfetch/auk", "fastfetch/auk.txt",
            "fastfetch/config.jsonc", "fastfetch/LICENSE")
 

@@ -65,6 +65,7 @@ cp -L /etc/resolv.conf /mnt/gentoo/etc/resolv.conf
 mkdir -p /tmp/inst
 tar -xf /dev/vdc -C /tmp/inst
 install -m 0755 /tmp/inst/chroot-stage2.sh /mnt/gentoo/root/chroot-stage2.sh
+install -m 0755 /tmp/inst/install-branding.sh /mnt/gentoo/root/install-branding.sh
 install -m 0755 /tmp/inst/install-wifi-firmware.py /mnt/gentoo/root/install-wifi-firmware.py
 mountpoint -q /mnt/gentoo/proc || mount -t proc proc /mnt/gentoo/proc
 mountpoint -q /mnt/gentoo/sys || mount --rbind /sys /mnt/gentoo/sys

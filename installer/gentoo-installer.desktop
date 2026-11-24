@@ -1,10 +1,10 @@
 [Desktop Entry]
 Type=Application
-Name=Install Gentoo KDE
+Name=Install Auk Linux
 GenericName=Install to internal disk
-Comment=Copy this live system onto an internal disk
+Comment=Copy this live Auk Linux system onto an internal disk
 Exec=/usr/local/bin/gentoo-installer
-Icon=gentoo-installer
+Icon=/usr/share/icons/hicolor/scalable/apps/gentoo-installer.svg
 Terminal=false
 Categories=System;Settings;
 Keywords=install;setup;disk;

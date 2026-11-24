@@ -50,6 +50,9 @@ grub-install --target=x86_64-efi --efi-directory=/boot/efi \
 
 echo "--- generate the real menu ---"
 grub-mkconfig -o /boot/grub/grub.cfg
+# grub-mkconfig suffixes GRUB_DISTRIBUTOR with " GNU/Linux"; normalize the
+# generated labels to the Auk Linux identity.
+sh /root/install-branding.sh / --grub-cfg /boot/grub/grub.cfg
 
 # UEFI GRUB starts with prefix /EFI/BOOT on the ESP. Point it at the menu that
 # lives on the ext4 root, selected by filesystem UUID.

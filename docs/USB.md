@@ -7,16 +7,29 @@ packages) survive a reboot because they are written to the stick.
 
 | Property | Value |
 |---|---|
-| Image | `dist/gentoo-kde-usb.img` |
+| Image | `dist/auk-linux-usb.img` |
 | Allocated | ~9.6 GiB (raw image is 14 GiB) |
 | Checksums | `dist/SHA256SUMS` |
 | Size | 14 GiB (fits any "16 GB" stick, ~14.9 GiB usable) |
 | Firmware | BIOS **and** UEFI |
 | Partition table | GPT |
 | Desktop | KDE Plasma 6.7.6, Wayland, autologin as `demo` |
-| Installer | GTK 4 “Install Gentoo KDE” wizard on the desktop and in the menu |
+| Installer | GTK 4 “Install Auk Linux” wizard on the desktop and in the menu |
 | Terminal | Konsole on the desktop and in the menu; text login on `Ctrl+Alt+F3` |
 | Files | PCManFM-Qt on the desktop and in the menu |
+
+## Get the image
+
+The image is not stored in git. Download the split release assets and verify
+them with:
+
+```sh
+bin/download-image.sh
+```
+
+That writes `dist/auk-linux-usb.img` (~14 GiB) and `dist/SHA256SUMS`. If you
+built the image yourself with `bin/build_usb.py`, the same file is already in
+`dist/`.
 
 ## Write it
 
@@ -24,7 +37,7 @@ You need a USB stick of at least 16 GB. Everything on it will be erased.
 
 ```sh
 cd dist && sha256sum -c SHA256SUMS
-cd .. && sudo bin/write-usb.sh /dev/sdX dist/gentoo-kde-usb.img
+cd .. && sudo bin/write-usb.sh /dev/sdX dist/auk-linux-usb.img
 ```
 
 Replace `/dev/sdX` with the whole-disk device of the stick (check with
@@ -34,7 +47,7 @@ your running root, and asks you to type the device name before writing.
 Any image writer works too (balenaEtcher, `dd`, GNOME Disks). For `dd`:
 
 ```sh
-sudo dd if=dist/gentoo-kde-usb.img of=/dev/sdX bs=4M conv=fsync status=progress
+sudo dd if=dist/auk-linux-usb.img of=/dev/sdX bs=4M conv=fsync status=progress
 ```
 
 ## Boot it
@@ -60,9 +73,9 @@ Credentials:
 ```
 GPT
 ├─ p1  1 MiB    BIOS boot partition (GRUB core.img)
-├─ p2  512 MiB  EFI System Partition (FAT32)
+├─ p2  512 MiB  EFI System Partition (FAT32, LABEL=AUKEFI)
 │               EFI/BOOT/BOOTX64.EFI + grub.cfg
-└─ p3  ~13.5 GiB ext4 root, LABEL=gentoo-root
+└─ p3  ~13.5 GiB ext4 root, LABEL=auk-root
                 /boot/grub/grub.cfg, kernel, generic initramfs
 ```
 
@@ -171,7 +184,7 @@ emergency mode on its next boot. If the swap lives in LVM or LUKS, use
 
 ## Install it onto a computer
 
-On the live desktop, double-click **Install Gentoo KDE** (also under System in
+On the live desktop, double-click **Install Auk Linux** (also under System in
 the application menu). The wizard asks for a target disk, a computer name and a
 user account, then copies this system onto the disk. It runs offline and
 compiles nothing.
@@ -199,10 +212,10 @@ Full flow, backend behavior and limitations: [INSTALLER.md](INSTALLER.md).
 ## Rebuild from scratch
 
 ```sh
-python3 bin/build_usb.py --force        # makes dist/gentoo-kde-usb.img (14 GiB)
+python3 bin/build_usb.py --force        # makes dist/auk-linux-usb.img (14 GiB)
 python3 bin/verify_image.py             # BIOS boot test + screenshot
 python3 bin/verify_image.py --uefi      # UEFI boot test + screenshot
-xz -T0 -3 -k dist/gentoo-kde-usb.img    # optional: smaller upload, not the release
+xz -T0 -3 -k dist/auk-linux-usb.img    # optional: smaller upload, not the release
 ```
 
 `build_usb.py` boots the live ISO, creates the GPT layout on a fresh sparse

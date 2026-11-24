@@ -71,7 +71,7 @@ def login_live(vm, tries=4):
     for _ in range(tries):
         mark = vm.mark()
         try:
-            vm.wait(r"gentoo-proto login:", timeout=180, since=mark)
+            vm.wait(r" login:", timeout=180, since=mark)
         except TimeoutError:
             continue
         time.sleep(1)
@@ -84,7 +84,7 @@ def login_live(vm, tries=4):
         vm.sendline("gentoo")
         mark = vm.mark()
         try:
-            vm.wait(r"root@gentoo-proto ~ #", timeout=60, since=mark)
+            vm.wait(r"root@\S+ ~ #", timeout=60, since=mark)
             return
         except TimeoutError:
             continue
@@ -209,7 +209,7 @@ def phase_boot(target, uefi=False):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--usb", default=os.path.join(ROOT, "dist", "gentoo-kde-usb.img"))
+    ap.add_argument("--usb", default=os.path.join(ROOT, "dist", "auk-linux-usb.img"))
     ap.add_argument("--target", default=os.path.join(WORK, "test-install-target.img"))
     ap.add_argument("--size", default="20G")
     ap.add_argument("--skip-install", action="store_true")

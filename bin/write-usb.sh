@@ -2,7 +2,7 @@
 # Write the finished image to a USB stick, with guardrails.
 #
 #   sudo bin/write-usb.sh /dev/sdX
-#   sudo bin/write-usb.sh /dev/sdX dist/gentoo-kde-usb.img.xz
+#   sudo bin/write-usb.sh /dev/sdX dist/auk-linux-usb.img.xz
 #
 # Refuses to write to the disk holding /, requires the target to be removable,
 # and asks you to type the device name before destroying it.
@@ -10,7 +10,7 @@ set -euo pipefail
 
 ROOT=$(cd "$(dirname "$0")/.." && pwd)
 DEVICE=${1:-}
-IMAGE=${2:-$ROOT/dist/gentoo-kde-usb.img}
+IMAGE=${2:-$ROOT/dist/auk-linux-usb.img}
 
 die() { echo "error: $*" >&2; exit 1; }
 

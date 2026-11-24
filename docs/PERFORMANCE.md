@@ -11,7 +11,7 @@ benchmarks.
 | CPU | 2 cores / 2 threads, x86-64 |
 | RAM | 2 GB |
 | Storage | 16 GB internal |
-| OS | Gentoo, kernel 6.18.63-gentoo-dist-bin |
+| OS | Auk Linux 0.1 (Gentoo-based), kernel 6.18.63-gentoo-dist-bin |
 | Desktop | KDE Plasma 6.7.6 (Wayland) |
 | Install source | prebuilt Gentoo binhost, 0 packages compiled |
 

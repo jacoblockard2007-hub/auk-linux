@@ -1,7 +1,7 @@
 # The graphical installer
 
-The USB image includes a **GTK 4 “Install Gentoo KDE” wizard**. On the live
-desktop, double-click the **Install Gentoo KDE** icon (it is also in the
+The USB image includes a **GTK 4 “Install Auk Linux” wizard**. On the live
+desktop, double-click the **Install Auk Linux** icon (it is also in the
 application menu under System).
 
 The installer is offline: it copies the running USB system onto the target
