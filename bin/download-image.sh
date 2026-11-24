@@ -8,12 +8,14 @@
 #   bin/download-image.sh
 #   bin/download-image.sh --tag v0.1.0
 #   bin/download-image.sh --dir /some/other/dir
+#   bin/download-image.sh --no-decompress   # keep the joined .xz only
 set -euo pipefail
 
 ROOT=$(cd "$(dirname "$0")/.." && pwd)
 DIST="$ROOT/dist"
 TAG="${AUK_RELEASE:-latest}"
 REPO="${AUK_REPO:-jacoblockard2007-hub/auk-linux}"
+DECOMPRESS=1
 
 die() { echo "error: $*" >&2; exit 1; }
 
@@ -25,6 +27,7 @@ while [ $# -gt 0 ]; do
     case "$1" in
         --tag) TAG=${2:?--tag needs a value}; shift 2 ;;
         --dir) DIST=${2:?--dir needs a value}; shift 2 ;;
+        --no-decompress) DECOMPRESS=0; shift ;;
         -h|--help) usage; exit 0 ;;
         *) die "unknown argument: $1 (try --help)" ;;
     esac
@@ -79,6 +82,17 @@ cat "${PARTS[@]}" > "$XZ"
 
 # The joined file should match the whole-image checksum.
 awk -v name="$XZ" '$2 == name {print}' SHA256SUMS | sha256sum -c -
+
+if [ "$DECOMPRESS" = 0 ]; then
+    cat <<EOF
+
+[+] compressed image ready: $DIST/$XZ
+    Join the parts again or decompress manually:
+
+    xz -dc "$XZ" > "$DIST/$RAW"
+EOF
+    exit 0
+fi
 
 xz_bytes=$(stat -c%s "$XZ")
 raw_bytes=15032385536

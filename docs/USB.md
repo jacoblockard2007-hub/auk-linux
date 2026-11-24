@@ -222,3 +222,20 @@ xz -T0 -3 -k dist/auk-linux-usb.img    # what bin/download-image.sh unpacks
 image, copies the installed root filesystem, regenerates the initramfs, and
 installs both bootloaders. The source disk is mounted read-write only long
 enough for ext4 journal recovery, then remounted read-only for the copy.
+
+## Publishing the download
+
+The release image is too large for git. Compress it, split it below GitHub's
+2 GiB per-asset limit, and write checksums for the raw image, the `.xz` and
+every part:
+
+```sh
+xz -T0 -3 -k dist/auk-linux-usb.img
+split -b 1900M -d -a 2 dist/auk-linux-usb.img.xz dist/auk-linux-usb.img.xz.part
+(cd dist && sha256sum auk-linux-usb.img auk-linux-usb.img.xz \
+    auk-linux-usb.img.xz.part* > SHA256SUMS)
+```
+
+Then create the release with `dist/SHA256SUMS`, `dist/README.txt` and the
+`*.part*` files. `bin/download-image.sh` reads `SHA256SUMS` from the latest
+release, so the part count can change without editing the script.
