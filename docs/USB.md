@@ -215,7 +215,7 @@ Full flow, backend behavior and limitations: [INSTALLER.md](INSTALLER.md).
 python3 bin/build_usb.py --force        # makes dist/auk-linux-usb.img (14 GiB)
 python3 bin/verify_image.py             # BIOS boot test + screenshot
 python3 bin/verify_image.py --uefi      # UEFI boot test + screenshot
-xz -T0 -3 -k dist/auk-linux-usb.img    # optional: smaller upload, not the release
+xz -T0 -3 -k dist/auk-linux-usb.img    # what bin/download-image.sh unpacks
 ```
 
 `build_usb.py` boots the live ISO, creates the GPT layout on a fresh sparse

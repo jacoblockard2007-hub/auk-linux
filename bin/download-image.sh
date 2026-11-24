@@ -52,6 +52,7 @@ fetch() {
 }
 
 mkdir -p "$DIST"
+DIST=$(cd "$DIST" && pwd)
 cd "$DIST"
 
 echo "[*] release: $BASE"
