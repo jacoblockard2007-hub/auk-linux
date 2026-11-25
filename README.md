@@ -5,6 +5,9 @@ packages.** Auk boots from a USB stick into KDE Plasma, ships a graphical
 one-click installer, and installs every package from Gentoo's official binary
 host — nothing is compiled on the user's machine.
 
+**Download:** <https://jacoblockard2007-hub.github.io/auk-linux/> — the
+landing page with the download commands, checksums and screenshots.
+
 ```sh
 git clone https://github.com/jacoblockard2007-hub/auk-linux.git
 cd auk-linux

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Auk Linux — a Linux desktop that boots from a USB stick</title>
+<meta name="description" content="Auk is a beginner-friendly KDE Plasma desktop built from prebuilt Gentoo packages. Boot it from a USB stick, run one graphical installer, and nothing ever compiles.">
+<meta name="theme-color" content="#0b0e13">
+<link rel="icon" href="assets/auk-logo.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/auk-logo.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Auk Linux 0.1">
+<meta property="og:description" content="A beginner-friendly KDE Plasma desktop built from prebuilt Gentoo packages. Boots from a 14 GiB USB image. Nothing compiles.">
+<meta property="og:image" content="https://jacoblockard2007-hub.github.io/auk-linux/plasma.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <img src="assets/auk-logo.png" alt="" width="30" height="30">
+      Auk Linux <span class="ver">0.1</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#download">Download</a>
+      <a href="#screens">Screenshots</a>
+      <a href="#specs">Specs</a>
+      <a href="#faq">FAQ</a>
+      <a class="gh" href="https://github.com/jacoblockard2007-hub/auk-linux" rel="noopener">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        GitHub
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <img class="hero-mark" src="assets/auk-logo.png" alt="Auk Linux logo" width="104" height="104">
+    <h1>A Linux desktop that fits on a <span class="gold">USB stick</span>.</h1>
+    <p class="lede">
+      Auk is a beginner-friendly KDE Plasma desktop built from prebuilt Gentoo packages.
+      Boot the stick, click through one short installer, and you have a real system on your
+      disk. <strong>Nothing is compiled on your machine.</strong>
+    </p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#download">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1a.75.75 0 0 1 .75.75v7.19l2.72-2.72a.75.75 0 1 1 1.06 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 0 1 1.06-1.06l2.72 2.72V1.75A.75.75 0 0 1 8 1Z"/><path d="M2 11.75a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z"/></svg>
+        Download Auk 0.1
+      </a>
+      <a class="btn btn-ghost" href="https://github.com/jacoblockard2007-hub/auk-linux#readme" rel="noopener">Read the docs</a>
+    </div>
+    <ul class="chips">
+      <li><b>3.4 GiB</b> download</li>
+      <li><b>14 GiB</b> persistent image</li>
+      <li><b>16 GB</b> USB stick</li>
+      <li><b>BIOS + UEFI</b></li>
+    </ul>
+
+    <figure class="shot">
+      <img src="plasma.png" alt="KDE Plasma desktop running on Auk Linux, with the application launcher, Konsole and Files icons in the bottom panel" width="1280" height="800">
+      <figcaption>Auk 0.1 — Plasma 6.7.6 on Wayland, booted from the USB image.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="tight" aria-label="Key facts">
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><span class="n">0</span><span class="l">packages compiled</span></div>
+      <div class="stat"><span class="n">328</span><span class="l">KDE packages, all binary</span></div>
+      <div class="stat"><span class="n">~2 min</span><span class="l">from power-on to Plasma</span></div>
+      <div class="stat"><span class="n">2</span><span class="l">boot modes: BIOS + UEFI</span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="why">
+  <div class="wrap">
+    <span class="eyebrow">Why Auk</span>
+    <h2>A desktop for people who do not want a build log</h2>
+    <p class="section-lede">
+      Gentoo is famous for compiling everything. Auk takes the opposite road: it pins the
+      profile the official binary host was built for, then installs only prebuilt packages.
+    </p>
+    <div class="cards">
+      <article class="card">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M9.4 1 3.2 8.9c-.25.32-.02.78.38.78h3.3l-.9 5.1c-.07.4.44.63.68.3l6.2-7.9c.25-.32.02-.78-.38-.78H9.1l1.05-5.1c.08-.4-.43-.63-.75-.3Z"/></svg></span>
+        <h3>Nothing compiles</h3>
+        <p>Every package comes from Gentoo's official binhost. The installer refuses to fall
+          back to a source build, so a missing binary stops the install instead of starting a
+          3-hour compile.</p>
+      </article>
+      <article class="card">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1.2 9.5 5 13.3 6.5 9.5 8 8 11.8 6.5 8 2.7 6.5 6.5 5 8 1.2Z"/><path d="M12.6 10.4l.7 1.7 1.7.7-1.7.7-.7 1.7-.7-1.7-1.7-.7 1.7-.7.7-1.7Z" opacity=".65"/><path d="M3 11.5l.5 1.2 1.2.5-1.2.5L3 14.9l-.5-1.2-1.2-.5 1.2-.5.5-1.2Z" opacity=".45"/></svg></span>
+        <h3>A wizard, not a terminal</h3>
+        <p>A GTK&nbsp;4 “Install Auk Linux” wizard picks your disk, asks for a username and
+          copies the running system onto it. No partitioning commands, no fstab editing.</p>
+      </article>
+      <article class="card">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.6 13.4a7.4 7.4 0 0 1 10.8-10.8"/><path d="M2.6 13.4 9 7a4.9 4.9 0 0 1 4.4-4.4"/><circle cx="11.4" cy="8.6" r="2.4"/><path d="m9.4 6.6-1.2 3.6"/></svg></span>
+        <h3>Runs on modest hardware</h3>
+        <p>Plasma idles around 700&nbsp;MB of RAM and 5–10% CPU on a 2-core, 2&nbsp;GB
+          Chromebook. It is a full desktop, not a stripped rescue shell.</p>
+      </article>
+      <article class="card">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.9" y="2.9" width="12.2" height="10.2" rx="2"/><circle cx="8" cy="8" r="2.4"/><path d="M4.9 12.9v-2.2h6.2v2.2"/></svg></span>
+        <h3>Boots both ways</h3>
+        <p>One image carries GRUB for legacy BIOS and the UEFI fallback path. Pick the stick
+          in your firmware boot menu and it starts — no separate ISO per mode.</p>
+      </article>
+      <article class="card">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M1.8 5.8a9.4 9.4 0 0 1 12.4 0"/><path d="M4 8.4a6.2 6.2 0 0 1 8 0"/><path d="M6.3 11a3 3 0 0 1 3.4 0"/><circle cx="8" cy="13.3" r=".9" fill="currentColor" stroke="none"/></svg></span>
+        <h3>Wi-Fi firmware included</h3>
+        <p>NetworkManager plus non-free firmware for common Intel, Atheros, Broadcom,
+          Marvell, MediaTek and Realtek cards. Configure Wi-Fi with a text menu or the
+          desktop applet.</p>
+      </article>
+      <article class="card">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.9" y="3.4" width="12.2" height="9.2" rx="1.8"/><path d="m4.6 6.4 2 1.6-2 1.6"/><path d="M8.6 9.9h2.9"/></svg></span>
+        <h3>It is a real system</h3>
+        <p>The USB is persistent: your files, settings and installed packages survive
+          reboots. Under the hood it is Gentoo with Portage, so nothing is locked away.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="start">
+  <div class="wrap">
+    <span class="eyebrow">Get it running</span>
+    <h2>Three steps, about twenty minutes</h2>
+    <p class="section-lede">
+      Most of that is the download and the write. Booting takes a couple of minutes.
+    </p>
+    <ol class="steps">
+      <li>
+        <h3>Download the image</h3>
+        <p>3.4&nbsp;GiB compressed, split into two files because GitHub caps release assets
+          at 2&nbsp;GiB. You need about 20&nbsp;GB of free disk space.</p>
+      </li>
+      <li>
+        <h3>Write it to a USB stick</h3>
+        <p>16&nbsp;GB or larger. <strong>Everything on the stick is erased.</strong> Use the
+          script below, <code>dd</code>, Rufus, or balenaEtcher.</p>
+      </li>
+      <li>
+        <h3>Boot it, then install if you want</h3>
+        <p>Open your firmware's boot menu and choose the USB device. Disable Secure Boot if
+          the machine refuses to start it. The live desktop logs in automatically as
+          <code>demo</code>, and the installer sits on the desktop.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="download">
+  <div class="wrap">
+    <span class="eyebrow">Download</span>
+    <h2>Auk Linux 0.1 <span style="color:var(--muted-2);font-weight:500;font-size:.6em">prototype</span></h2>
+    <p class="section-lede">
+      MIT licensed. The image is a 14&nbsp;GiB persistent disk that boots on BIOS and UEFI and
+      fits a 16&nbsp;GB stick. Every asset is checksummed; the scripts verify them for you.
+    </p>
+
+    <div class="dl">
+      <div>
+        <div class="tabs">
+          <input type="radio" name="os" id="tab-linux" checked>
+          <input type="radio" name="os" id="tab-windows">
+          <input type="radio" name="os" id="tab-manual">
+
+          <div class="tabbar" role="tablist" aria-label="Choose your operating system">
+            <label for="tab-linux">Linux</label>
+            <label for="tab-windows">Windows</label>
+            <label for="tab-manual">macOS &amp; manual</label>
+          </div>
+
+          <div class="panel panel-linux">
+            <p style="margin-top:0;color:var(--muted);font-size:.93rem">
+              Download, verify, join, decompress — one script. It needs <code>curl</code> (or
+              <code>wget</code>), <code>sha256sum</code> and <code>xz</code>.
+            </p>
+            <div class="code"><div class="code-head"><span class="label">bash</span><button class="copy" type="button">Copy</button></div><pre><code>curl -fsSLO https://raw.githubusercontent.com/jacoblockard2007-hub/auk-linux/main/bin/download-image.sh
+bash download-image.sh</code></pre></div>
+            <p style="color:var(--muted);font-size:.9rem">
+              The image lands in <code>./auk-download/auk-linux-usb.img</code>. Then write it:
+            </p>
+            <div class="code"><div class="code-head"><span class="label">bash</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># find the stick first — this must be the whole disk, not a partition</span>
+lsblk
+
+<span class="c"># replace /dev/sdX with your stick; this erases it</span>
+sudo dd if=auk-download/auk-linux-usb.img of=/dev/sdX bs=4M status=progress oflag=sync</code></pre></div>
+            <div class="note warn">
+              <p><strong>Check the device name twice.</strong> Writing to your system disk
+                destroys it. Unplug other USB storage to keep the list short.</p>
+            </div>
+          </div>
+
+          <div class="panel panel-windows">
+            <ol style="margin:0 0 4px;padding-left:22px;color:var(--muted);font-size:.93rem">
+              <li>Download <strong>both</strong> <code>.part00</code> and <code>.part01</code>
+                files from the release, into your Downloads folder.</li>
+              <li>Install <a href="https://www.7-zip.org/" rel="noopener">7-Zip</a> (it handles
+                <code>.xz</code>).</li>
+              <li>Join the parts in PowerShell:</li>
+            </ol>
+            <div class="code"><div class="code-head"><span class="label">powershell</span><button class="copy" type="button">Copy</button></div><pre><code>cd $HOME\Downloads
+cmd /c copy /b auk-linux-usb.img.xz.part00+auk-linux-usb.img.xz.part01 auk-linux-usb.img.xz
+
+<span class="c"># should print 39BE7EC9703BEBE42C56E76FFCC7931B8DEB9EC228EB3221F7081E15CCFE99DF</span>
+(Get-FileHash .\auk-linux-usb.img.xz -Algorithm SHA256).Hash</code></pre></div>
+            <ol start="4" style="margin:0 0 4px;padding-left:22px;color:var(--muted);font-size:.93rem">
+              <li>Extract it: right-click <code>auk-linux-usb.img.xz</code> →
+                <strong>7-Zip</strong> → <strong>Extract Here</strong>. You get
+                <code>auk-linux-usb.img</code> (~14&nbsp;GiB).</li>
+              <li>Open <a href="https://rufus.ie/" rel="noopener">Rufus</a>, select that
+                <code>.img</code>, select your USB stick, press <strong>Start</strong>.
+                Accept the “DD image” mode if it asks.</li>
+            </ol>
+          </div>
+
+          <div class="panel panel-manual">
+            <p style="margin-top:0;color:var(--muted);font-size:.93rem">
+              Download both parts plus <code>SHA256SUMS</code> into one folder, then join them.
+              macOS needs <code>xz</code>: <code>brew install xz</code>.
+            </p>
+            <div class="code"><div class="code-head"><span class="label">shell</span><button class="copy" type="button">Copy</button></div><pre><code>cat auk-linux-usb.img.xz.part00 auk-linux-usb.img.xz.part01 <span class="p">&gt;</span> auk-linux-usb.img.xz
+shasum -a 256 auk-linux-usb.img.xz   <span class="c"># 39be7ec9…99df</span>
+xz -dc auk-linux-usb.img.xz <span class="p">&gt;</span> auk-linux-usb.img
+
+<span class="c"># macOS: use the raw device, for example /dev/rdisk4</span>
+sudo dd if=auk-linux-usb.img of=/dev/rdiskN bs=4m</code></pre></div>
+            <p style="color:var(--muted);font-size:.9rem">
+              On Linux the write command is the same as in the Linux tab. On macOS,
+              <code>diskutil list</code> shows which <code>diskN</code> is the stick.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="dl-aside">
+        <h3>What you are downloading</h3>
+        <p class="big">3.4 GiB</p>
+        <p style="color:var(--muted);font-size:.88rem;margin:0 0 14px">
+          Split into two files. Both are required — they are one archive.
+        </p>
+        <a class="file" href="https://github.com/jacoblockard2007-hub/auk-linux/releases/latest/download/auk-linux-usb.img.xz.part00">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1a.75.75 0 0 1 .75.75v7.19l2.72-2.72a.75.75 0 1 1 1.06 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 0 1 1.06-1.06l2.72 2.72V1.75A.75.75 0 0 1 8 1Z"/><path d="M2 11.75a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z"/></svg>
+          <span class="name">auk-linux-usb.img.xz.part00</span><span class="meta">1.9 GB</span>
+        </a>
+        <a class="file" href="https://github.com/jacoblockard2007-hub/auk-linux/releases/latest/download/auk-linux-usb.img.xz.part01">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1a.75.75 0 0 1 .75.75v7.19l2.72-2.72a.75.75 0 1 1 1.06 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 0 1 1.06-1.06l2.72 2.72V1.75A.75.75 0 0 1 8 1Z"/><path d="M2 11.75a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z"/></svg>
+          <span class="name">auk-linux-usb.img.xz.part01</span><span class="meta">1.6 GB</span>
+        </a>
+        <a class="file" href="https://github.com/jacoblockard2007-hub/auk-linux/releases/latest/download/SHA256SUMS">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1a.75.75 0 0 1 .75.75v7.19l2.72-2.72a.75.75 0 1 1 1.06 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 0 1 1.06-1.06l2.72 2.72V1.75A.75.75 0 0 1 8 1Z"/><path d="M2 11.75a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z"/></svg>
+          <span class="name">SHA256SUMS</span><span class="meta">359 B</span>
+        </a>
+        <a class="file" href="https://github.com/jacoblockard2007-hub/auk-linux/releases/latest/download/README.txt">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1a.75.75 0 0 1 .75.75v7.19l2.72-2.72a.75.75 0 1 1 1.06 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 0 1 1.06-1.06l2.72 2.72V1.75A.75.75 0 0 1 8 1Z"/><path d="M2 11.75a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z"/></svg>
+          <span class="name">README.txt</span><span class="meta">2.7 kB</span>
+        </a>
+        <p style="margin:14px 0 0;font-size:.85rem">
+          <a href="https://github.com/jacoblockard2007-hub/auk-linux/releases/tag/v0.1.0" rel="noopener">Release notes →</a>
+        </p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="checksums">
+  <div class="wrap">
+    <span class="eyebrow">Verify</span>
+    <h2>Checksums</h2>
+    <p class="section-lede">
+      The script checks these automatically. If you downloaded files by hand, compare them
+      before writing anything to a stick — a truncated part is the usual cause of a stick that
+      will not boot.
+    </p>
+    <pre class="sums"><span class="h"># auk-linux-usb.img        (raw, 15,032,385,536 bytes)</span>
+dfd8f729db92cfb084791f99d1d15b9bb90beac25f8c512ab9b95d637d04c2a5
+
+<span class="h"># auk-linux-usb.img.xz     (joined archive)</span>
+39be7ec9703bebe42c56e76ffcc7931b8deb9ec228eb3221f7081e15ccfe99df
+
+<span class="h"># auk-linux-usb.img.xz.part00</span>
+3234bd9a42748a03f83a17da9b4e014d8dd4484dcaad60091bdbac422e68aa6a
+
+<span class="h"># auk-linux-usb.img.xz.part01</span>
+3eeebaf6bbd79478747d66ead3f988ec26525f30648c261d3bd31dff6b0f5eb4</pre>
+    <p style="color:var(--muted-2);font-size:.85rem">
+      The same values are published as <code>SHA256SUMS</code> on the release page.
+    </p>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="screens">
+  <div class="wrap">
+    <span class="eyebrow">Screenshots</span>
+    <h2>What it looks like</h2>
+    <p class="section-lede">Every screenshot is from the image you download.</p>
+    <div class="gallery">
+      <figure>
+        <img src="installer-welcome.png" alt="Install Auk Linux wizard, welcome page" width="1280" height="800" loading="lazy">
+        <figcaption>The GTK 4 installer — welcome page</figcaption>
+      </figure>
+      <figure>
+        <img src="fastfetch.png" alt="Konsole running the auk command, showing the Snares penguin logo and system summary" width="1280" height="800" loading="lazy">
+        <figcaption><code>auk</code> prints system info with the Snares penguin</figcaption>
+      </figure>
+      <figure class="wide">
+        <img src="grub.png" alt="GRUB boot menu with Auk Linux entries" width="800" height="600" loading="lazy">
+        <figcaption>The Auk boot menu — BIOS and UEFI</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="specs">
+  <div class="wrap">
+    <span class="eyebrow">Specs</span>
+    <h2>What is inside</h2>
+    <p class="section-lede">Version 0.1, built and tested in November 2026.</p>
+    <div class="table-wrap">
+      <table>
+        <tbody>
+          <tr><th scope="row">Base</th><td>Gentoo Linux, <code>stage3-amd64-desktop-systemd</code> profile</td></tr>
+          <tr><th scope="row">Packages</th><td>Gentoo's official binary host — 328 KDE packages installed, 0 compiled</td></tr>
+          <tr><th scope="row">Desktop</th><td>KDE Plasma 6.7.6 on Wayland</td></tr>
+          <tr><th scope="row">Kernel</th><td><code>6.18.63-gentoo-dist-bin</code> with a generic dracut initramfs</td></tr>
+          <tr><th scope="row">Boot</th><td>GRUB for legacy BIOS and UEFI; GPT with a BIOS boot partition and an ESP</td></tr>
+          <tr><th scope="row">Image</th><td>14 GiB raw, 9.6 GiB used, ext4 root, persistent</td></tr>
+          <tr><th scope="row">Installer</th><td>GTK 4 wizard, offline whole-disk clone of the running system</td></tr>
+          <tr><th scope="row">Included apps</th><td>Konsole, PCManFM-Qt, NetworkManager (<code>nmtui</code>), <code>auk</code> system summary</td></tr>
+          <tr><th scope="row">Architecture</th><td>x86-64 only</td></tr>
+          <tr><th scope="row">Live accounts</th><td><code>demo</code> / <code>demo</code> (autologin), <code>root</code> / <code>gentoo</code></td></tr>
+          <tr><th scope="row">License</th><td>MIT — third-party components keep their own licenses</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note warn" style="margin-top:22px">
+      <p><strong>This is a prototype, not a supported distribution.</strong> The live passwords
+        are public, the bootloader is unsigned, and the installer only does whole-disk
+        installs — no dual-boot, no encryption. Use a spare machine or a VM, and do not store
+        personal data on it yet.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="faq">
+  <div class="wrap">
+    <span class="eyebrow">FAQ</span>
+    <h2>Reasonable questions</h2>
+    <div class="faq">
+      <details>
+        <summary>Do I have to install it to use it?</summary>
+        <div class="body"><p>No. The stick is a complete, persistent system — boot it and work
+          from it. The installer is there for when you want the same system on an internal
+          disk, which is faster and frees the USB port.</p></div>
+      </details>
+      <details>
+        <summary>Will it wipe my computer?</summary>
+        <div class="body"><p>Only if you run the installer. Booting the stick touches nothing on
+          your internal disk. The installer itself is whole-disk: it erases the disk you point
+          it at, so do not run it against a disk that holds data you need.</p></div>
+      </details>
+      <details>
+        <summary>Why is the download two files?</summary>
+        <div class="body"><p>GitHub caps each release asset at 2&nbsp;GiB and the compressed
+          image is 3.4&nbsp;GiB, so it is split. The parts are one archive: download both into
+          the same folder, then join them with the downloader script or the commands above.</p></div>
+      </details>
+      <details>
+        <summary>How much disk space and RAM do I need?</summary>
+        <div class="body"><p>About 20&nbsp;GB free on the machine doing the download, a
+          16&nbsp;GB-or-larger USB stick, and 2&nbsp;GB of RAM to run the desktop (4&nbsp;GB is
+          comfortable). Storage on the stick is 13.5&nbsp;GB.</p></div>
+      </details>
+      <details>
+        <summary>The machine will not boot the stick.</summary>
+        <div class="body"><p>Open the firmware boot menu (usually F12, F9 or Esc at power-on)
+          and pick the USB device explicitly — some firmware gives up on a blank internal disk
+          instead of falling through. If it still stops, turn off Secure Boot: the bootloader
+          is unsigned.</p></div>
+      </details>
+      <details>
+        <summary>Does Wi-Fi work?</summary>
+        <div class="body"><p>The image ships NetworkManager and Debian's non-free firmware for
+          the common Intel, Atheros, Broadcom, Marvell, MediaTek and Realtek chipsets. On the
+          live system, run <code>nmtui</code> or use the desktop applet.</p></div>
+      </details>
+      <details>
+        <summary>Is this Gentoo?</summary>
+        <div class="body"><p>Auk is an independent project built from Gentoo binary packages.
+          It is not affiliated with or endorsed by the Gentoo Foundation. The desktop, installer,
+          boot menu and system identity all read Auk Linux.</p></div>
+      </details>
+      <details>
+        <summary>Can I use it as my main system?</summary>
+        <div class="body"><p>Not yet. There is no update UI, no rollback, no dual-boot and no
+          encryption. It is a working prototype meant to prove the “zero-compile Gentoo desktop”
+          idea — treat it accordingly.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="brand">
+          <img src="assets/auk-logo.png" alt="" width="30" height="30">
+          Auk Linux
+        </div>
+        <p>A beginner-friendly KDE desktop built from prebuilt Gentoo packages.</p>
+        <p>MIT licensed. Auk is an independent project and is not affiliated with or endorsed
+          by the Gentoo Foundation. Gentoo is a trademark of the Gentoo Foundation.</p>
+        <p>© 2026 the Auk contributors.</p>
+      </div>
+      <nav aria-label="Project links">
+        <a href="https://github.com/jacoblockard2007-hub/auk-linux" rel="noopener">Source on GitHub</a>
+        <a href="https://github.com/jacoblockard2007-hub/auk-linux/releases/tag/v0.1.0" rel="noopener">Release 0.1</a>
+        <a href="https://github.com/jacoblockard2007-hub/auk-linux/blob/main/README.md" rel="noopener">README</a>
+        <a href="https://github.com/jacoblockard2007-hub/auk-linux/blob/main/LICENSE" rel="noopener">License</a>
+        <a href="https://github.com/jacoblockard2007-hub/auk-linux/issues" rel="noopener">Report a problem</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js" defer></script>
+</body>
+</html>

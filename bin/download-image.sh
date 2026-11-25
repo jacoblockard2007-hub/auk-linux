@@ -3,16 +3,29 @@
 #
 # The image is 14 GiB, so it is compressed and split into parts smaller than
 # GitHub's 2 GiB per-asset limit. This script downloads the parts, verifies
-# every SHA-256, joins them, and decompresses the raw image into dist/.
+# every SHA-256, joins them, and decompresses the raw image.
+#
+# It works both inside a clone (writes to dist/) and on its own, so it can be
+# fetched with curl and run without git:
 #
 #   bin/download-image.sh
 #   bin/download-image.sh --tag v0.1.0
 #   bin/download-image.sh --dir /some/other/dir
 #   bin/download-image.sh --no-decompress   # keep the joined .xz only
+#
+# Environment: AUK_RELEASE (tag), AUK_REPO (owner/name), AUK_BASE_URL (mirror).
 set -euo pipefail
 
-ROOT=$(cd "$(dirname "$0")/.." && pwd)
-DIST="$ROOT/dist"
+SELF=$(cd "$(dirname "$0")" && pwd)
+if [ -f "$SELF/../bin/build_usb.py" ]; then
+    ROOT=$(cd "$SELF/.." && pwd)
+    DIST="$ROOT/dist"
+    IN_TREE=1
+else
+    ROOT=$PWD
+    DIST="$PWD/auk-download"
+    IN_TREE=0
+fi
 TAG="${AUK_RELEASE:-latest}"
 REPO="${AUK_REPO:-jacoblockard2007-hub/auk-linux}"
 DECOMPRESS=1
@@ -20,7 +33,7 @@ DECOMPRESS=1
 die() { echo "error: $*" >&2; exit 1; }
 
 usage() {
-    sed -n '2,10p' "$0" | sed 's/^# \{0,1\}//'
+    awk 'NR > 1 && /^#/ { sub(/^# ?/, ""); print; next } NR > 1 { exit }' "$0"
 }
 
 while [ $# -gt 0 ]; do
@@ -36,7 +49,9 @@ done
 command -v sha256sum >/dev/null || die "sha256sum is required"
 command -v xz >/dev/null || die "xz is required"
 
-if [ "$TAG" = "latest" ]; then
+if [ -n "${AUK_BASE_URL:-}" ]; then
+    BASE=$AUK_BASE_URL
+elif [ "$TAG" = "latest" ]; then
     BASE="https://github.com/$REPO/releases/latest/download"
 else
     BASE="https://github.com/$REPO/releases/download/$TAG"
@@ -114,9 +129,20 @@ cat <<EOF
     compressed:   $DIST/$XZ
     checksums:    $DIST/SHA256SUMS
 
-Write it to a USB stick of at least 16 GB (all data is erased):
+Write it to a USB stick of at least 16 GB (all data is erased).
+Check the device name twice — this destroys the target disk:
 
-    sudo bin/write-usb.sh /dev/sdX "$DIST/$RAW"
+EOF
+
+if [ "$IN_TREE" = 1 ]; then
+    echo "    sudo bin/write-usb.sh /dev/sdX \"$DIST/$RAW\""
+else
+    echo "    sudo dd if=\"$DIST/$RAW\" of=/dev/sdX bs=4M status=progress oflag=sync"
+    echo
+    echo "Or use balenaEtcher / Rufus on Windows or macOS."
+fi
+
+cat <<EOF
 
 You can delete the .xz and .part* files after writing if you need the space.
 EOF
