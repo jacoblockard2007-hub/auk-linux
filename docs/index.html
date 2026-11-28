@@ -136,6 +136,32 @@
 
 <hr class="rule">
 
+<section id="watch">
+  <div class="wrap">
+    <span class="eyebrow">Boot clip</span>
+    <h2>Nineteen seconds from power-on to Plasma</h2>
+    <p class="section-lede">
+      The real image, recorded in a virtual machine: boot menu, kernel, desktop, then
+      <code>auk</code>. No cuts to hide a compile — the kernel log is the only part sped up.
+    </p>
+    <figure class="shot video">
+      <video controls preload="none" playsinline width="1280" height="800"
+             poster="assets/auk-boot-poster.jpg"
+             aria-label="Screen recording of Auk Linux booting from the USB image into KDE Plasma and running the auk command">
+        <source src="assets/auk-boot.mp4" type="video/mp4">
+        Your browser cannot play this clip.
+        <a href="assets/auk-boot.mp4">Download it instead</a> (1.4&nbsp;MB, MP4).
+      </video>
+      <figcaption>
+        BIOS boot under KVM: GRUB, Linux 6.18.63, Plasma 6.7.6 on Wayland, <code>auk</code>.
+        The kernel log runs at 3×; everything else is real time.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<hr class="rule">
+
 <section id="start">
   <div class="wrap">
     <span class="eyebrow">Get it running</span>

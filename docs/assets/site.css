@@ -292,6 +292,19 @@ p code, li code, .body code, .note code, .section-lede code {
   font-size: 0.84rem;
 }
 
+/* ---------- boot clip ---------- */
+
+.shot.video { margin-top: 34px; }
+
+.shot video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  border-radius: 10px;
+  background: #000;
+}
+
 /* ---------- generic section ---------- */
 
 section { padding: 78px 0; }
